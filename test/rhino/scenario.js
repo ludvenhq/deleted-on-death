@@ -429,6 +429,19 @@ function fluid(id) {
 }
 check(fluid('minecraft:grass_block') === true, 'a deleted fluid result is undone');
 check(fluid('minecraft:cobblestone') === false, 'cobblestone forms while it is not deleted');
+for (var broken = 0; broken < 2; broken++) {
+  __kjs.nativeHandlers[0].handler({
+    getNewState: function () {
+      throw new Error('broken event');
+    },
+  });
+}
+check(
+  __kjs.log.filter(function (line) {
+    return line.indexOf('error: Deleted on Death: fluid hook failed') === 0;
+  }).length === 1,
+  'a failing fluid event is caught and reported once',
+);
 
 // ---- A death in the Nether deletes nothing ----
 

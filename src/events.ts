@@ -16,13 +16,23 @@ const FLUID_EVENT = 'net.neoforged.neoforge.event.level.BlockEvent$FluidPlaceBlo
  * regrower re-sweep removes those blocks again within a minute instead, and the log says so.
  */
 function registerFluidHook(): void {
+  let failed = false;
   try {
     NativeEvents.onEvent(Java.loadClass(FLUID_EVENT), (event) => {
-      let result = read(event, ['newState', 'getNewState']);
-      if (typeof result !== 'object' || result === null) return;
-      if (!knownDeleted().has(stateId(result))) return;
-      let before = read(event, ['originalState', 'getOriginalState']);
-      if (typeof before === 'object' && before !== null) event.setNewState(before);
+      // This runs inside NeoForge's event bus, not a KubeJS event: an error thrown here would
+      // reach the game, so it is caught and reported once.
+      try {
+        let result = read(event, ['newState', 'getNewState']);
+        if (typeof result !== 'object' || result === null) return;
+        if (!knownDeleted().has(stateId(result))) return;
+        let before = read(event, ['originalState', 'getOriginalState']);
+        if (typeof before === 'object' && before !== null) event.setNewState(before);
+      } catch (error) {
+        if (!failed) {
+          failed = true;
+          console.error(`Deleted on Death: fluid hook failed (${String(error)})`);
+        }
+      }
     });
     console.info('Deleted on Death: fluid hook registered');
   } catch (error) {
