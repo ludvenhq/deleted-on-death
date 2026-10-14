@@ -1,0 +1,11 @@
+{
+  // Node-side code: tests, build scripts and tool configs. The game scripts in src/ are checked by
+  // tsconfig.json, which has no Node types because Rhino has no Node.
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["ES2024"],
+    "types": ["node"]
+  },
+  "include": ["test", "scripts", "*.config.ts", "*.config.mjs"],
+  "exclude": ["test/rhino"]
+}

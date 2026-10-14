@@ -1,0 +1,8 @@
+node_modules/
+# Build output: the bundled script, the content pack folder and the release files.
+build/
+dist/
+# Downloaded Rhino jars for the Rhino check.
+.cache/
+coverage/
+*.log

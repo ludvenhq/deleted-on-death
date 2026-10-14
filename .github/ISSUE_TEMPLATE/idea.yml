@@ -1,0 +1,16 @@
+name: Idea
+description: A change to the rules or a new twist.
+labels: [idea]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: The idea
+      description: What should change, and what it would look like in a 30-second clip.
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why
+      description: What it makes better to play or to watch.

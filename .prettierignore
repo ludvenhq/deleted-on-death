@@ -1,0 +1,6 @@
+build/
+dist/
+.cache/
+coverage/
+package-lock.json
+CODE_OF_CONDUCT.md

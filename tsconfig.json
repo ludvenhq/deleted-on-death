@@ -1,0 +1,11 @@
+{
+  // The game scripts. They run in KubeJS's Rhino, not in Node, so the standard library is cut to
+  // what release Rhino has (ES2015 plus Array.prototype.includes) and there are no Node or DOM
+  // types. The KubeJS API comes from src/kubejs/, typed by hand.
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["ES2015", "ES2016.Array.Include"],
+    "types": []
+  },
+  "include": ["src", "test/rhino/*.ts"]
+}

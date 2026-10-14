@@ -1,0 +1,48 @@
+name: Bug report
+description: Something in the game does not work as the rules say.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. The rules are in [docs/rules.md](https://github.com/ludvenhq/deleted-on-death/blob/main/docs/rules.md); a bug is anything the game does differently.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you did, what you expected, and what happened instead.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Die on grass
+        2. Walk into a cave
+        3. ...
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      description: Minecraft, NeoForge, KubeJS, KubeLoader and Deleted on Death.
+      placeholder: Minecraft 1.21.1, NeoForge 21.1.x, KubeJS 2101.7.x, KubeLoader x, Deleted on Death 0.1.0
+    validations:
+      required: true
+  - type: dropdown
+    id: where
+    attributes:
+      label: Where
+      options:
+        - Single player
+        - Multiplayer server or Realm
+    validations:
+      required: true
+  - type: textarea
+    id: log
+    attributes:
+      label: Log
+      description: The relevant part of `logs/kubejs/server.log` in your game folder, if there is an error.
+      render: text

@@ -1,0 +1,54 @@
+{
+  "name": "deleted-on-death",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Minecraft but when you die, the block you died on is deleted from the world forever. KubeJS server scripts for NeoForge 1.21.1, written in TypeScript.",
+  "license": "MIT",
+  "author": "Ludven (https://ludven.com)",
+  "homepage": "https://github.com/ludvenhq/deleted-on-death#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ludvenhq/deleted-on-death.git"
+  },
+  "bugs": "https://github.com/ludvenhq/deleted-on-death/issues",
+  "type": "module",
+  "engines": {
+    "node": ">=24.11 <25"
+  },
+  "mod": {
+    "id": "deleted_on_death",
+    "name": "Deleted on Death",
+    "authors": "Ludven",
+    "minecraft": "[1.21.1]",
+    "dependencies": {
+      "neoforge": "[21.1.199,)",
+      "kubejs": "[2101.7.2-build.374,)",
+      "kubeloader": "[21-0.1.0-Alpha-3,)"
+    }
+  },
+  "scripts": {
+    "dev": "node scripts/build.ts --watch",
+    "build": "node scripts/build.ts",
+    "check:rhino": "node scripts/rhino-check.ts",
+    "pack": "node scripts/pack.ts",
+    "check:jar": "node scripts/jar-check.ts",
+    "link": "node scripts/link.ts",
+    "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.node.json",
+    "lint": "eslint . && prettier --check .",
+    "format": "prettier --write . && eslint --fix .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "verify": "npm run lint && npm run typecheck && npm run test && npm run build && npm run check:rhino && npm run pack && npm run check:jar"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^24.19.2",
+    "acorn": "^8.19.0",
+    "esbuild": "^0.28.2",
+    "eslint": "^10.12.0",
+    "prettier": "^3.9.10",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.71.2",
+    "vitest": "^5.0.4"
+  }
+}
